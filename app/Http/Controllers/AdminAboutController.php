@@ -29,7 +29,7 @@ class AdminAboutController extends Controller
 
     public function index()
     {
-        $data = Webabouts::withcount('image')->orderby('id','desc')->paginate(5);
+        $data = Webabouts::all();
         return view('admin.about.index', compact('data'));
     }
 
@@ -40,75 +40,35 @@ class AdminAboutController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->hasFile('image')) {
-            foreach ($request->file('image') as $key => $arr_image) {
-                $allowed = array('png', 'jpg', 'jpeg');
-                if (!in_array($arr_image->extension(), $allowed)) {
-                  return back()->with('notif', json_encode([
-                    'title' => "about",
-                    'text' => "Gagal menambah about, format foto tidak diizinkan.",
-                    'type' => "error"
-                  ]));
-                }
-            }
-        }
 
         try {
-            $slug = Str::slug($request->judul);
-
-            $nama = Webabouts::where('slug', $slug)->count();
-            if ($nama > 0) {
-                return back()->with('notif', json_encode([
-                    'title' => "about",
-                    'text' => "Gagal menambah about, judul about sudah terdaftar",
-                    'type' => "warning"
-                ]));
-            }
-
             $foto = '';
             if($request->hasFile('image')) {
-                $foto = $request->file('image')[0]->store('about-img/');
+                $foto = $request->file('image')->store('about-img/');
             }
 
             $about = Webabouts::create([
                 "judul" => $request->judul,
-                "slug" => $slug,
+                "judul_en" => $request->judul_en,
+                "subjudul" => $request->subjudul,
+                "subjudul_en" => $request->subjudul_en,
                 "desk" => $request->desk,
+                "desk_en" => $request->desk_en,
                 "foto" => $foto,
+                "status" => $request->status,
+                "position" => $request->position,
                 "iduser" => auth::user()->id
             ]);
 
-            WebAboutsGambar::create([
-                'idabouts' => $about->id,
-                'file' => $foto,
-                'urut' => 0
-            ]);
-
-            if($request->hasFile('image')) {
-                foreach($request->file('image') as $key => $arr_image){
-                    if ($key == 0) {
-                      continue;
-                    }
-
-                    $judulfoto = md5($arr_image->getRealPath().microtime()).'.'.$arr_image->extension();
-                    $foto = $arr_image->store('about-img/');
-                    WebAboutsGambar::create([
-                        'idabouts' => $about->id,
-                        'file' => $foto,
-                        'urut' => $key
-                    ]);
-                }
-            }
-
             return redirect('admin/admin-about')->with('notif', json_encode([
-                'title' => "about",
-                'text' => "Berhasil menambah about.",
+                'title' => "Abouts",
+                'text' => "Berhasil menambah content abouts.",
                 'type' => "success"
             ]));
         } catch (\Exception $e) {
             return back()->with('notif', json_encode([
-                'title' => "about",
-                'text' => "Gagal menambah about, ". $e->getMessage(),
+                'title' => "Abouts",
+                'text' => "Gagal menambah content abouts, ". $e->getMessage(),
                 'type' => "error"
             ]));
         }
@@ -116,81 +76,33 @@ class AdminAboutController extends Controller
 
     public function edit($id)
     {
-        $data = Webabouts::with('image')->where('id',$id)->first();
+        $data = Webabouts::where('id',$id)->first();
         return view('admin.about.edit', compact('data'));
     }
 
     public function update(Request $request)
     {
-        if ($request->hasFile('image')) {
-            foreach ($request->file('image') as $key => $arr_image) {
-                $allowed = array('png', 'jpg', 'jpeg');
-                if (!in_array($arr_image->extension(), $allowed)) {
-                  return back()->with('notif', json_encode([
-                    'title' => "about",
-                    'text' => "Gagal mengubah about, format foto tidak diizinkan.",
-                    'type' => "error"
-                  ]));
-                }
-            }
-        }
+
 
         try {
-            $slug = Str::slug($request->judul);
-
-            $nama = Webabouts::where('slug', $slug)->where('id', '!=', $request->id)->count();
-            if ($nama > 0) {
-                return back()->with('notif', json_encode([
-                    'title' => "about",
-                    'text' => "Gagal mengubah about, judul about sudah terdaftar",
-                    'type' => "warning"
-                ]));
-            }
 
             $foto = '';
             if($request->hasFile('image')) {
-                $foto = $request->file('image')[0]->store('about-img/');
+                $foto = $request->file('image')->store('about-img/');
             }
 
            $about  = Webabouts::where('id', $request->id)->update([
                 "judul" => $request->judul,
-                "slug" => $slug,
+                "judul_en" => $request->judul_en,
+                "subjudul" => $request->subjudul,
+                "subjudul_en" => $request->subjudul_en,
                 "desk" => $request->desk,
+                "desk_en" => $request->desk_en,
                 "foto" => $foto,
+                "status" => $request->status,
+                "position" => $request->position,
                 "iduser" => auth::user()->id
             ]);
-
-            // hapus foto lama
-            $image_lama = WebAboutsGambar::where('idabouts', $request->id)->get();
-            foreach ($image_lama as $key => $value) {
-                WebAboutsGambar::where('id', $value->id)->delete();
-
-                if (Storage::exists($value->file)) {
-                    Storage::delete($value->file);
-                }
-            }
-
-            WebAboutsGambar::create([
-                'idabouts' => $request->id,
-                'file' => $foto,
-                'urut' => 0
-            ]);
-
-            if($request->hasFile('image')) {
-                foreach($request->file('image') as $key => $arr_image){
-                    if ($key == 0) {
-                      continue;
-                    }
-
-                    $judulfoto = md5($arr_image->getRealPath().microtime()).'.'.$arr_image->extension();
-                    $foto = $arr_image->store('about-img/');
-                    WebAboutsGambar::create([
-                        'idabouts' => $request->id,
-                        'file' => $foto,
-                        'urut' => $key
-                    ]);
-                }
-            }
 
             return redirect('admin/admin-about')->with('notif', json_encode([
               'title' => "about",
