@@ -69,8 +69,8 @@ a {
 }
 
 p {
-  line-height: 1.8;
-  font-size: 23px;
+  line-height: 28px;
+  font-size: 20px;
 }
 
 .section {
@@ -1646,4 +1646,13 @@ footer .copy {
     width: 25px !important;
     height: 25px !important;
   }
+}
+
+.about-section {
+  padding: 60px 0;
+  background-color: #fafafa;
+}
+
+.about-section:nth-child(even) {
+  background-color: #f1eded;
 }
