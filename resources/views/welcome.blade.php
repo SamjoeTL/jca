@@ -59,9 +59,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#product">Product</a>
-                        <!--<li class="nav-item">
-            <a class="nav-link" href="#blog">Blog</a>
-          </li>-->
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#sosmed">Social Media</a>
                     </li>
@@ -109,7 +107,7 @@
     @foreach ($about as $a)
     <section class="about-section" id="about">
         <div class="container">
-            @if ($loop->first)
+            {{-- @if ($loop->first)
             <div class="row align-items-center">
                 <div class="col-xxl-12 text-center">
                     <div class="title-wrapper">
@@ -117,28 +115,34 @@
                     </div>
                 </div>
             </div>
-            @endif
+            @endif --}}
 
             <div class="row justify-content-center align-items-center">
                 <!-- Left Section: Profile Overview -->
                 @if($a->foto == null || $a->position == 2)
-                <div class="col-lg-8">
-                  <div class="about-overview text-center">
-                    <h3 class="display-4 fw-bold text-dark mb-3 font-secondary">{{$a->judul}}</h3>
-                    @if($a->subjudul != null)
-                    <h4>{{$a->subjudul}}</h4>
-                    @endif
+                <div class="col-lg-10">
+                  <div class="text-center">
+                    <div class="title">
+                        <h3 class="display-4 fw-bold text-dark font-secondary">{{$a->judul}}</h3>
+                        @if($a->subjudul != null)
+                        <h4 class="sub">{{$a->subjudul}}</h4>
+                        @endif
+                    </div>
                     {!!$a->desk!!}
                 </div>
                 </div>
                 @else 
                 <div class="col-lg-6 col-md-12 mb-4 mb-lg-0 {{$a->position == 3 ? 'order-2':'order-1'}}">
-                    <div class="about-overview">
-                        <h3 class="display-4 fw-bold text-dark mb-3 font-secondary">{{$a->judul}}</h3>
-                        @if($a->subjudul != null)
-                        <h4>{{$a->subjudul}}</h4>
-                        @endif
-                        {!!$a->desk!!}
+                    <div class="about-overview position-{{$a->position}}">
+                        <div class="title">
+                            <h3 class="display-4 fw-bold text-dark font-secondary">{{$a->judul}}</h3>
+                            @if($a->subjudul != null)
+                            <h4 class="sub">{{$a->subjudul}}</h4>
+                            @endif
+                        </div>
+                        <div class="desc">
+                            {!!$a->desk!!}
+                        </div>
                     </div>
                 </div>
 
@@ -228,9 +232,13 @@
                 </div>
                 <div class="col-lg-6 wow fadeInUp">
                     <div class="blog-content">
-                        <h3 class="font-secondary" data-wow-delay="300">{{ $item->nama }}</h3>
-                        {!! $item->desk !!}
-                        <a href="{{asset($item->file)}}" class="lightbox-image btn btn-dark rounded-pill">See Catalog</a>
+                        <div class="title">
+                            <h3 class="font-secondary" data-wow-delay="300">{{ $item->nama }}</h3>
+                        </div>
+                        <div class="desc">
+                            {!! $item->desk !!}
+                        </div>
+                        <a href="{{asset($item->file)}}" class="lightbox-image btn btn-dark rounded-pill mt-3" data-fancybox="catalog" data-caption="{{ $item->nama }}">See Catalog</a>
                     </div>
                 </div>
             </div>
@@ -549,7 +557,7 @@
 
     <!-- swiper -->
     <script src="js/swiper-bundle.min.js"></script>
-    
+
     <script src="{{asset('app-assets/vendors/js/vendors.min.js')}}"></script>
     <script src="{{ asset('app-assets/plugins/fancybox/jquery.fancybox.js') }}"></script>
     <script>

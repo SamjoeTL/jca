@@ -60,7 +60,7 @@ class AdminAboutController extends Controller
                 "iduser" => auth::user()->id
             ]);
 
-            return redirect('admin/admin-about')->with('notif', json_encode([
+            return redirect('admin/about')->with('notif', json_encode([
                 'title' => "Abouts",
                 'text' => "Berhasil menambah content abouts.",
                 'type' => "success"
@@ -104,7 +104,7 @@ class AdminAboutController extends Controller
                 "iduser" => auth::user()->id
             ]);
 
-            return redirect('admin/admin-about')->with('notif', json_encode([
+            return redirect('admin/about')->with('notif', json_encode([
               'title' => "about",
               'text' => "Berhasil mengubah about.",
               'type' => "success"
