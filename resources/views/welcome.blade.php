@@ -16,6 +16,8 @@
     <!-- Main CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
+    <link rel="stylesheet" href="{{ asset('app-assets/plugins/fancybox/jquery.fancybox.min.css') }}">
+
     <!-- Swiper Css -->
     <link href="css/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
 
@@ -23,8 +25,7 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
 
 </head>
 
@@ -87,13 +88,9 @@
                     <p class="lead text-black mb-4">
                         {{$home->deskripsi}}
                     </p>
-
-                    <div class="mt-4">
-                        <a href="#about" class="btn btn-dark rounded-pill px-4 py-3 me-3 border-3"
-                            style="border-color:#fff;">
-                            Learn More
-                        </a>
-                    </div>
+                    <a href="#about" class="btn btn-dark rounded-pill">
+                        Learn More
+                    </a>
                 </div>
                 <!-- End Text Column -->
 
@@ -165,7 +162,7 @@
             <div class="row align-items-center">
                 <div class="col-xxl-12 text-center">
                     <div class="title-wrapper">
-                        <h3 class="main-title mb-50 font-secondary">Our Service</h3>
+                        <h3 class="main-title mb-40 font-secondary">Our Service</h3>
                     </div>
                 </div>
             </div>
@@ -213,12 +210,11 @@
 
 
     <!-- Product Start -->
-    <section class="divider-150 product-section" id="product" style="background-color: #f1eded;">
+    <section class="product-section" id="product" style="background-color: #f1eded;">
         <div class="container">
             <div class="row">
                 <div class="col-md text-center">
-                    <h2 class="wow fadeInUp text-capitalize font-secondary" style="margin-top: -80px;"
-                        data-wow-delay="300">
+                    <h2 class="wow fadeInUp text-capitalize font-secondary mb-40" data-wow-delay="300">
                         Feature <span class="gradient">Product</span>
                     </h2>
                 </div>
@@ -232,14 +228,9 @@
                 </div>
                 <div class="col-lg-6 wow fadeInUp">
                     <div class="blog-content">
-                        <h3 class="font-secondary" data-wow-delay="300">{{ $item->kategori->nama }}</h3>
-                        <p class="mt-4" data-wow-delay="400" style="font-size: 18px">
-                            {!! $item->isi !!}
-                        </p>
-                        @foreach ($links as $link)
-                        <a href="{!! $link->pesan !!}" class="btn btn-dark rounded-pill px-4 py-3 me-3 border-3"
-                            style="border-color:#fff;">See Catalog</a>
-                        @endforeach
+                        <h3 class="font-secondary" data-wow-delay="300">{{ $item->nama }}</h3>
+                        {!! $item->desk !!}
+                        <a href="{{asset($item->file)}}" class="lightbox-image btn btn-dark rounded-pill">See Catalog</a>
                     </div>
                 </div>
             </div>
@@ -558,6 +549,19 @@
 
     <!-- swiper -->
     <script src="js/swiper-bundle.min.js"></script>
+    
+    <script src="{{asset('app-assets/vendors/js/vendors.min.js')}}"></script>
+    <script src="{{ asset('app-assets/plugins/fancybox/jquery.fancybox.js') }}"></script>
+    <script>
+        $('.lightbox-image').fancybox({
+            openEffect  : 'fade',
+            closeEffect : 'fade',
+            helpers : {
+                media : {}
+            }
+        });
+    </script>
+
 
     <!-- Main Js -->
     <script src="js/app.js"></script>
@@ -599,6 +603,8 @@
         });
 
     </script>
+
+    
 
 
 </body>

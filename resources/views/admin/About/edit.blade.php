@@ -170,7 +170,7 @@
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i
                                         data-feather='home'></i></a></li>
                             <li class="breadcrumb-item">Abouts</li>
-                            <li class="breadcrumb-item active">Tambah</li>
+                            <li class="breadcrumb-item active">Edit</li>
                         </ol>
                     </div>
                 </div>
@@ -273,7 +273,7 @@
                                 </div>
 
                                 <div class="form-group col-12">
-                                    <label class="col-form-label"><b>Deskripsi</b> <span class="text-muted">(English)</span></label>
+                                    <label class="col-form-label"><b>Description</b> <span class="text-muted">(English)</span></label>
                                     <input type="hidden" name="desk_en" id="desk_en" value="{{$data->desk_en}}">
                                     <section class="full-editor">
                                         <div id="toolbar-container-desk-en">

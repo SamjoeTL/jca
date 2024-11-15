@@ -16,33 +16,11 @@ class AdminProductController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request)
-    {
-        if ($request->kategori != 'semua'){
-          $idkategori = ProductKategori::where('nama', $request->kategori)->first();
-        } else {
-            $idkategori = null;
-        }
-        $data2 = Product::when(!empty($idkategori), function ($query) use ($idkategori) {
-            return $query->where('idkategori', $idkategori->id);
-        })->paginate(9);
-        $total = Product::count();
-        $kategori = ProductKategori::withcount('Products')->get();
-        return view('admin.product.index',compact('data2','kategori','total','idkategori'));
+    public function index()
+    {   
+        $data = Product::all();
+        return view('admin.product.index', compact('data'));
     }
-
-    public function kategori(Request $request)
-     {
-       $term = trim($request->q);
-       $data2s = ProductKategori::when(!empty($term), function ($query) use ($term) {
-             return $query->where('nama', 'LIKE', '%'. $term .'%');
-         })->get();
-       $ta  = array();
-       foreach ($data2s as $data2) {
-           $ta[] = ['id' => $data2->id, 'text' => $data2->nama];
-       }
-       return response()->json($ta);
-     }
 
     public function create()
     {
@@ -52,40 +30,34 @@ class AdminProductController extends Controller
     public function store(Request $request)
     {
       try {
-        $cekisi = Product::where('id',$request->isi)->count();
-        if($cekisi > 0) {
-            return back()->with('notif', json_encode([
-                'title' => "product",
-                'text' => "Gagal menambahkan data2".$request->isi.", isi sudah terdaftar",
-                'type' => "warning"
-            ]));
-        }
-
-        $slug = Str::slug($request->id);
-
         $gambar = '';
         if ($request->file('gambar') != null) {
-            $gambar = $request->file('gambar')->store('product-img/'.$slug);
+            $gambar = $request->file('gambar')->store('product-img');
         }
 
+        $file = '';
+        if ($request->file('files') != null) {
+            $file = $request->file('files')->storeAs('product-file',$request->file('files')->getClientOriginalName());
+        }
         Product::create([
-            'id' => $request->id,
-            'idkategori' => $request->idkategori,
-            'isi' => $request->isi,
-            'slug' => $slug,
+            'nama' => $request->nama,
+            'nama_en' => $request->nama_en,
+            'desk' => $request->desk,
+            'desk_en' => $request->desk_en,
             'gambar' => $gambar,
-            'iduser' => auth()->user()->id
+            'file' => $file,
+            'iduser' => auth::user()->id
         ]);
 
         return redirect('admin/product')->with('notif', json_encode([
-            'title' => "product",
-            'text' => "Berhasil menambahkan data2",
+            'title' => "PRODUCT",
+            'text' => "Berhasil menambahkan data product",
             'type' => "success"
         ]));
       } catch (\Throwable $e) {
           return back()->with('notif', json_encode([
-              'title' => "product",
-              'text' => "Gagal menambahkan data2, ".$e->getMessage(),
+              'title' => "PRODUCT",
+              'text' => "Gagal menambahkan data product, ".$e->getMessage(),
               'type' => "error"
           ]));
       }
@@ -93,50 +65,48 @@ class AdminProductController extends Controller
 
     public function edit($id)
     {
-        $kategori = ProductKategori::get();
-        $data2 = Product::where('id', $id)->first();
+        $data = Product::where('id', $id)->first();
 
-        return view('admin.product.edit', compact('kategori','data2'));
+        return view('admin.product.edit', compact('data'));
     }
 
     public function update(Request $request)
     {
         try {
-            $cekisi = Product::where('isi', $request->isi)->where('id', '!=', $request->id)->count();
-            if($cekisi > 0) {
-                return back()->with('notif', json_encode([
-                    'title' => "product",
-                    'text' => "Gagal mengubah data2".$request->isi.", kategori sudah terdaftar",
-                    'type' => "warning"
-                ]));
-            }
+            $data = Product::where('id',$request->id)->first();
 
-            $slug = Str::slug($request->id);
-            $gambar = Product::where('id',$request->id)->pluck('gambar')->first();
-
+            $gambar = $data->gambar;
             if ($request->file('gambar') != null) {
-                Storage::delete($gambar);
-                $gambar = $request->file('gambar')->store('product-img/'.$slug);
+                Storage::delete($data->gambar);
+                $gambar = $request->file('gambar')->store('product-img');
             }
+
+            $file = $data->file;
+            if ($request->file('files') != null) {
+                $file = $request->file('files')->storeAs('product-file',$request->file('files')->getClientOriginalName());
+            }
+
+
 
             Product::where('id',$request->id)->update([
-                'id' => $request->id,
-                'idkategori' => $request->idkategori,
-                'isi' => $request->isi,
-                'slug' => $slug,
+                'nama' => $request->nama,
+                'nama_en' => $request->nama_en,
+                'desk' => $request->desk,
+                'desk_en' => $request->desk_en,
                 'gambar' => $gambar,
-                'iduser' => auth()->user()->id
+                'file' => $file,
+                'iduser' => auth::user()->id
             ]);
 
             return redirect('admin/product')->with('notif', json_encode([
-                'title' => "product",
-                'text' => "Berhasil mengubah data2.",
+                'title' => "PRODUCT",
+                'text' => "Berhasil mengubah data product.",
                 'type' => "success"
             ]));
         } catch (\Exception $e) {
             return back()->with('notif', json_encode([
-                'title' => "product",
-                'text' => "Gagal mengubah data2, ". $e->getMessage(),
+                'title' => "PRODUCT",
+                'text' => "Gagal mengubah data product, ". $e->getMessage(),
                 'type' => "error"
             ]));
         }
@@ -149,82 +119,16 @@ class AdminProductController extends Controller
             Storage::delete($gambar);
             Product::where('id', $request->id)->delete();
             return back()->with('notif', json_encode([
-                'title' => "product",
-                'text' => "Berhasil menghapus data2.",
+                'title' => "PRODUCT",
+                'text' => "Berhasil menghapus data product.",
                 'type' => "success"
             ]));
         } catch (\Throwable $e) {
             return back()->with('notif', json_encode([
-                'title' => "product",
-                'text' => "Gagal menghapus Barang.".$e->getMessage(),
+                'title' => "PRODUCT",
+                'text' => "Gagal menghapus data product.".$e->getMessage(),
                 'type' => "error"
             ]));
         }
     }
-
-    public function storekategori(Request $request)
-    {
-        try {
-            $ceknama = ProductKategori::where('nama', $request->nama)->count();
-            if ($ceknama > 0) {
-                return back()->with('notif', json_encode([
-                    'title' => "CATEGORY",
-                    'text' => "Gagal menambah data2, kategori $request->nama sudah terdaftar",
-                    'type' => "warning"
-                ]));
-            }
-
-            ProductKategori::create([
-                'nama' => $request->nama,
-                'iduser' => Auth::user()->id
-            ]);
-            return back()->with('notif', json_encode([
-                'title' => "CATEGORY",
-                'text' => "Berhasil menambah data2 kategori $request->nama",
-                'type' => "success"
-            ]));
-        } catch (\Throwable $e) {
-            return back()->with('notif', json_encode([
-                'title' => "CATEGORY",
-                'text' => "Gagal menambah data2 kategori, ". $e->getMessage(),
-                'type' => "error"
-            ]));
-        }
-    }
-
-    public function getkategori($id)
-    {
-        $data2 = ProductKategori::where('id',$id)->first();
-        return $data2;
-    }
-
-    public function updatekategori(Request $request) {
-        try {
-          $ceknama = ProductKategori::where('nama', $request->nama)->where('id', '!=', $request->id)->count();
-          if ($ceknama != null) {
-              return back()->with('notif', json_encode([
-                  'title' => "CATEGORY",
-                  'text' => "Gagal mengubah, kategori $request->nama sudah terdaftar",
-                  'type' => "warning"
-              ]));
-          }
-
-          ProductKategori::where('id', $request->id)->update([
-            'nama' => $request->nama,
-            'iduser' => Auth::user()->id
-          ]);
-
-          return back()->with('notif', json_encode([
-              'title' => "CATEGORY",
-              'text' => "Berhasil mengubah data2 kategori $request->nama.",
-              'type' => "success"
-          ]));
-        } catch (\Throwable $e) {
-            return back()->with('notif', json_encode([
-                'title' => "CATEGORY",
-                'text' => "Gagal mengubah data2, ". $e->getMessage(),
-                'type' => "error"
-            ]));
-        }
-      }
 }

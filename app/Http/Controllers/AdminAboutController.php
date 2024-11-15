@@ -44,7 +44,7 @@ class AdminAboutController extends Controller
         try {
             $foto = '';
             if($request->hasFile('image')) {
-                $foto = $request->file('image')->store('about-img/');
+                $foto = $request->file('image')->store('about-img');
             }
 
             $about = Webabouts::create([
@@ -88,7 +88,7 @@ class AdminAboutController extends Controller
 
             $foto = '';
             if($request->hasFile('image')) {
-                $foto = $request->file('image')->store('about-img/');
+                $foto = $request->file('image')->store('about-img');
             }
 
            $about  = Webabouts::where('id', $request->id)->update([

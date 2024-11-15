@@ -15,9 +15,8 @@ class WelcomeController extends Controller
     {
         $home = WebHomes::with('gambar')->first();
         $about = WebAbouts::where('status',1)->get();
-        $product = Product::orderby('id','desc')->get();
+        $product = Product::where('status',1)->get();
         $links = Link::all();
         return view('welcome', compact('home','about','product','links'));
-
     }
 }
