@@ -1681,13 +1681,14 @@ footer .copy {
 
 .title h3 {
   font-size: 43px;
-  letter-spacing: 1px;
+  letter-spacing: .6px;
   margin-bottom: 2px;
 }
 
 .title h4.sub {
   font-style: 36px;
   font-weight: 400;
+  letter-spacing: .8px;
 }
 
 .desc p {

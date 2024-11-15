@@ -123,25 +123,25 @@
                 <div class="col-lg-10">
                   <div class="text-center">
                     <div class="title">
-                        <h3 class="display-4 fw-bold text-dark font-secondary">{{$a->judul}}</h3>
-                        @if($a->subjudul != null)
-                        <h4 class="sub">{{$a->subjudul}}</h4>
+                        <h3 class="display-4 fw-bold text-dark font-secondary">{{$a->judul_en}}</h3>
+                        @if($a->subjudul_en != null)
+                        <h4 class="sub">{{$a->subjudul_en}}</h4>
                         @endif
                     </div>
-                    {!!$a->desk!!}
+                    {!!$a->desk_en!!}
                 </div>
                 </div>
                 @else 
                 <div class="col-lg-6 col-md-12 mb-4 mb-lg-0 {{$a->position == 3 ? 'order-2':'order-1'}}">
                     <div class="about-overview position-{{$a->position}}">
                         <div class="title">
-                            <h3 class="display-4 fw-bold text-dark font-secondary">{{$a->judul}}</h3>
-                            @if($a->subjudul != null)
-                            <h4 class="sub">{{$a->subjudul}}</h4>
+                            <h3 class="display-4 fw-bold text-dark font-secondary">{{$a->judul_en}}</h3>
+                            @if($a->subjudul_en != null)
+                            <h4 class="sub">{{$a->subjudul_en}}</h4>
                             @endif
                         </div>
                         <div class="desc">
-                            {!!$a->desk!!}
+                            {!!$a->desk_en!!}
                         </div>
                     </div>
                 </div>
@@ -224,7 +224,7 @@
                 </div>
             </div>
             @foreach ($product as $item)
-            <div class="row align-items-center mt-50 @if($loop->iteration % 2 == 0) flex-row-reverse @endif">
+            <div class="row align-items-center mb-40 @if($loop->iteration % 2 == 0) flex-row-reverse @endif">
                 <div class="col-lg-6">
                     <div class="img-hvr">
                         <img src="{{ asset($item->gambar) }}" class="mw-100" alt="">
@@ -233,12 +233,12 @@
                 <div class="col-lg-6 wow fadeInUp">
                     <div class="blog-content">
                         <div class="title">
-                            <h3 class="font-secondary" data-wow-delay="300">{{ $item->nama }}</h3>
+                            <h3 class="font-secondary" data-wow-delay="300">{{ $item->nama_en }}</h3>
                         </div>
                         <div class="desc">
-                            {!! $item->desk !!}
+                            {!! $item->desk_en !!}
                         </div>
-                        <a href="{{asset($item->file)}}" class="lightbox-image btn btn-dark rounded-pill mt-3" data-fancybox="catalog" data-caption="{{ $item->nama }}">See Catalog</a>
+                        <a href="{{asset($item->file)}}" class="lightbox-image btn btn-dark rounded-pill mt-3" data-fancybox="catalog" data-caption="{{ $item->nama_en }}">See Catalog</a>
                     </div>
                 </div>
             </div>
