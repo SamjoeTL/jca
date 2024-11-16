@@ -76,16 +76,15 @@
     <!-- Navbar End -->
 
     <!-- Start Hero Section -->
+
     <section class="divider-150 d-table w-100 position-relative" style="background-color: #bfbfbf;" id="home">
         <div class="container h-100 d-flex flex-column justify-content-center">
             <div class="row align-items-center justify-content-between">
                 <!-- Text Column -->
 
                 <div class="col-lg-6 col-md-6">
-                    <h1 class="display-4 display-md-3 fw-bold text-black mb-4 font-secondary">{{$home->nama}}</h1>
-                    <p class="lead text-black mb-4">
-                        {{$home->deskripsi}}
-                    </p>
+                    <h1 class="display-4 display-md-3 fw-bold text-black mb-4 font-secondary">{{$home->judul}}</h1>
+                    <p class="lead text-black mb-4">{!!$home->desk!!}</p>
                     <a href="#about" class="btn btn-dark rounded-pill">
                         Learn More
                     </a>
@@ -94,7 +93,7 @@
 
                 <!-- Image Column -->
                 <div class="col-lg-5 col-md-6 mt-4 mt-md-0">
-                    <img src="{{asset($home->cover)}}" class="img-hero rounded-3 shadow-lg img-fluid"
+                    <img src="{{asset($home->foto)}}" class="img-hero rounded-3 shadow-lg img-fluid"
                         alt="Profile Image">
                 </div>
             </div>
@@ -131,7 +130,7 @@
                     {!!$a->desk!!}
                 </div>
                 </div>
-                @else 
+                @else
                 <div class="col-lg-6 col-md-12 mb-4 mb-lg-0 {{$a->position == 3 ? 'order-2':'order-1'}}">
                     <div class="about-overview position-{{$a->position}}">
                         <div class="title">
@@ -312,7 +311,7 @@
     <!-- End Blog Section -->
 
     <!-- Facebook Post Slider Start -->
-    <section class=" divider-20 sosmed-section" id="sosmed" style="background-color: #bfbfbf;">
+    <!--<section class=" divider-20 sosmed-section" id="sosmed" style="background-color: #bfbfbf;">
         <div class="container" style="margin-top: 170px;">
             <div class="row">
                 <div class="col-md text-center">
@@ -331,7 +330,7 @@
                                         allowfullscreen="true"></iframe>
                                 </div>
                                 <div class="profile-details">
-                                    <!--<img src="images/profile/profile1.jpg" alt="" />-->
+
                                     <div class="name-job">
                                         <h3 class="name">Post</h3>
                                         <h4 class="job">1</h4>
@@ -345,7 +344,7 @@
                                         allowfullscreen="true"></iframe>
                                 </div>
                                 <div class="profile-details">
-                                    <!--<img src="images/profile/profile2.jpg" alt="" />-->
+
                                     <div class="name-job">
                                         <h3 class="name">Post</h3>
                                         <h4 class="job">2</h4>
@@ -359,7 +358,7 @@
                                         allowfullscreen="true"></iframe>
                                 </div>
                                 <div class="profile-details">
-                                    <!--<img src="images/profile/profile3.jpg" alt="" />-->
+
                                     <div class="name-job">
                                         <h3 class="name">Post</h3>
                                         <h4 class="job">3</h4>
@@ -373,7 +372,7 @@
                                         allowfullscreen="true"></iframe>
                                 </div>
                                 <div class="profile-details">
-                                    <!--<img src="images/profile/profile4.jpg" alt="" />-->
+
                                     <div class="name-job">
                                         <h3 class="name">Post</h3>
                                         <h4 class="job">4</h4>
@@ -387,7 +386,7 @@
                                         allowfullscreen="true"></iframe>
                                 </div>
                                 <div class="profile-details">
-                                    <!--<img src="images/profile/profile5.jpg" alt="" />-->
+
                                     <div class="name-job">
                                         <h3 class="name">Post</h3>
                                         <h4 class="job">5</h4>
@@ -400,7 +399,7 @@
                     <div class="swiper-button-prev swiper-navBtn"></div>
                 </div>
             </div>
-    </section>
+    </section>-->
 
     <!-- Facebook Post Slider End -->
 
@@ -612,7 +611,7 @@
 
     </script>
 
-    
+
 
 
 </body>
