@@ -7,23 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Premium Bootstrap 4 Landing Page Template" />
     <meta name="keywords" content="bootstrap 4, premium, marketing, multipurpose" />
-    <meta name="author" content="Koshegio-Themes">
+    <meta name="author" content="CV. Patras Development">
     <title>JCA - Jembatan Cemerlang Abadi</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon-16x16.png">
 
     <!-- Main CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="{{ asset('app-assets/plugins/fancybox/jquery.fancybox.min.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('assets/plugins/real3d-317/real3d-flipbook/deploy/css/flipbook.style.css') }}">
+
     <!-- Swiper Css -->
-    <link href="css/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('css/swiper-bundle.min.css')}}" rel="stylesheet" type="text/css" />
 
     <!-- Custom styles -->
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-
+    <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
 
@@ -83,9 +84,11 @@
                 <!-- Text Column -->
 
                 <div class="col-lg-6 col-md-6">
-                    <h1 class="display-4 display-md-3 fw-bold text-black mb-4 font-secondary">{{$home->judul}}</h1>
-                    <p class="lead text-black mb-4">{!!$home->desk!!}</p>
-                    <a href="#about" class="btn btn-dark rounded-pill">
+                    <h1 class="display-4 display-md-3 fw-bold text-black mb-4 font-secondary">{{$home->judul_en}}</h1>
+                    <div class="desc">
+                        {!!$home->desk_en!!}
+                    </div>
+                    <a href="#about" class="btn btn-dark rounded-pill mt-4">
                         Learn More
                     </a>
                 </div>
@@ -93,8 +96,7 @@
 
                 <!-- Image Column -->
                 <div class="col-lg-5 col-md-6 mt-4 mt-md-0">
-                    <img src="{{asset($home->foto)}}" class="img-hero rounded-3 shadow-lg img-fluid"
-                        alt="Profile Image">
+                    <img src="{{asset($home->foto)}}" class="img-hero rounded-3 shadow-lg img-fluid">
                 </div>
             </div>
         </div>
@@ -213,7 +215,7 @@
 
 
     <!-- Product Start -->
-    <section class="product-section" id="product" style="background-color: #f1eded;">
+    <section class="product-section" id="product">
         <div class="container">
             <div class="row">
                 <div class="col-md text-center">
@@ -237,7 +239,7 @@
                         <div class="desc">
                             {!! $item->desk_en !!}
                         </div>
-                        <a href="{{asset($item->file)}}" class="lightbox-image btn btn-dark rounded-pill mt-3" data-fancybox="catalog" data-caption="{{ $item->nama_en }}">See Catalog</a>
+                        <button type="button" class="btn btn-dark rounded-pill mt-3" id="img-flip-{{ $item->id }}">See Catalog</button>
                     </div>
                 </div>
             </div>
@@ -548,30 +550,61 @@
     <!-- End Back to top -->
 
     <!-- Bootstrap Js -->
-    <script src="js/bootstrap.bundle.min.js"></script>
-
-    <!-- Shuffle Js -->
-    <script src="js/shuffle.min.js"></script>
-    <script src="js/sortCategory.js"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- swiper -->
-    <script src="js/swiper-bundle.min.js"></script>
+    <script src="{{asset('js/swiper-bundle.min.js')}}"></script>
 
     <script src="{{asset('app-assets/vendors/js/vendors.min.js')}}"></script>
-    <script src="{{ asset('app-assets/plugins/fancybox/jquery.fancybox.js') }}"></script>
+
+    <script src="{{ asset('assets/plugins/real3d-317/real3d-flipbook/deploy/js/flipbook.min.js') }}"></script>
+
     <script>
-        $('.lightbox-image').fancybox({
-            openEffect  : 'fade',
-            closeEffect : 'fade',
-            helpers : {
-                media : {}
-            }
-        });
+        $(document).ready(function () {
+        @foreach ($product as $all)
+            $("#img-flip-{{$all->id}}").flipBook({
+                pdfUrl:'{{ asset($all->file) }}',
+                lightBox:true,
+                btnSelect : {enabled: false},
+                btnSound : {enabled: false},
+                btnToc : {enabled: false},
+                btnDownloadPages : {enabled: false},
+                btnDownloadPdf : {enabled: false},
+                btnBookmark : {enabled: false},
+                btnPrint : {enabled: false},
+                btnShare : {enabled: false},
+                wheelDisabledNotFullscreen:true,
+
+                skin:'dark',
+
+                menuMargin:0,
+                menuBackground:'none',
+                menuShadow:'none',
+                menuAlignHorizontal:'right',
+                menuOverBook:true,
+
+                btnRadius:40,
+                btnMargin:4,
+                btnSize:14,
+                btnPaddingV:16,
+                btnPaddingH:16,
+                btnBorder:'2px solid rgba(255,255,255,.7)',
+                btnBackground:"rgba(0,0,0,.6)",
+                btnColor:'rgb(255,255,255)',
+
+                // sideBtnRadius:60,
+                sideBtnSize:40,
+                sideBtnBackground:"rgba(0,0,0,.6)",
+                sideBtnColor:'rgb(255,255,255)',
+            });
+        @endforeach
+
+        })
     </script>
 
 
     <!-- Main Js -->
-    <script src="js/app.js"></script>
+    <script src="{{asset('js/app.js')}}"></script>
 
     <!-- Swiper init -->
     <script>

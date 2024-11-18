@@ -406,7 +406,7 @@
         img_cropping.cropper({
             viewMode: 2,
             dragMode: 'move',
-            aspectRatio: 9 / 16,
+            aspectRatio: 3 / 4,
             guides: true,
             cropBoxResizable: true,
             minContainerWidth: $('#modalCropper').find('.img_container').width(),

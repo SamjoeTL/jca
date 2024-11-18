@@ -56,7 +56,7 @@
               <div class="card-body p-1 text-center">
                 <img src="{{asset($p->gambar)}}" class="rounded img-fluid mb-1" alt="">
                   <h5 class="mb-25"></h5>
-                  <small>{{$p->kategori->nama}}</small>
+                  <small>{{$p->nama}}</small>
               </div>
           </div>
         </div>
