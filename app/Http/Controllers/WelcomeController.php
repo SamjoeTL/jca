@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Link;
 use App\Models\Product;
+use App\Models\ProfilSosmed;
 use App\Models\WebAbouts;
 use App\Models\WebHomes;
+use App\Models\WebServices;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -16,6 +17,8 @@ class WelcomeController extends Controller
         $home = WebHomes::with('gambar')->first();
         $about = WebAbouts::where('status',1)->get();
         $product = Product::where('status',1)->get();
-        return view('welcome', compact('home','about','product'));
+        $sosmed = ProfilSosmed::get();
+        $service = WebServices::get();
+        return view('welcome', compact('home','about', 'service', 'product'));
     }
 }

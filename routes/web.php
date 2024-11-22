@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\AdminSosmedController;
 use App\Http\Controllers\welcomeController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -19,13 +20,14 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 Route::get('', [App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
-
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
 
 Auth::routes();
 
 
 Route::prefix('admin')->group(function (){
+
 
 Route::prefix('home')->group(function () {
     Route::get('', [App\Http\Controllers\AdminHomeController::class, 'index'])->name('admin.home');
@@ -45,15 +47,21 @@ Route::prefix('about')->group(function () {
     Route::post('delete', [App\Http\Controllers\AdminaboutController::class, 'delete'])->name('admin.about.delete');
 });
 
+Route::prefix('service')->group(function () {
+    Route::get('', [App\Http\Controllers\AdminServiceController::class, 'index'])->name('admin.service');
+    Route::get('create', [App\Http\Controllers\AdminServiceController::class, 'create'])->name('admin.service.create');
+    Route::post('store', [App\Http\Controllers\AdminServiceController::class, 'store'])->name('admin.service.store');
+    Route::get('edit/{id}', [App\Http\Controllers\AdminServiceController::class, 'edit'])->name('admin.service.edit');
+    Route::post('update', [App\Http\Controllers\AdminServiceController::class, 'update'])->name('admin.service.update');
+    Route::post('delete', [App\Http\Controllers\AdminServiceController::class, 'delete'])->name('admin.service.delete');
+});
 
-
-Route::prefix('link')->group(function (){
-    Route::get('', [App\Http\Controllers\AdminLinkController::class, 'index'])->name('admin.link');
-    Route::get('status', [App\Http\Controllers\AdminLinkController::class, 'status'])->name('s2.status');
-    Route::get('dt', [App\Http\Controllers\AdminLinkController::class, 'dt'])->name('admin.Link.dt');
-    Route::post('store', [App\Http\Controllers\AdminLinkController::class, 'store'])->name('admin.link.store');
-    Route::post('update', [App\Http\Controllers\AdminLinkController::class, 'update'])->name('admin.link.update');
-    Route::post('delete', [App\Http\Controllers\AdminLinkController::class, 'delete'])->name('admin.link.delete');
+Route::prefix('sosmed')->group(function () {
+    Route::get('', [App\Http\Controllers\AdminSosmedController::class, 'index'])->name('admin.sosmed');
+    Route::post('storesosmed', [App\Http\Controllers\AdminSosmedController::class, 'storesosmed'])->name('admin.storesosmed');
+    Route::get('getsosmed/{id}', [App\Http\Controllers\AdminSosmedController::class, 'getsosmed'])->name('admin.getsosmed');
+    Route::post('updatesosmed', [App\Http\Controllers\AdminSosmedController::class, 'updatesosmed'])->name('admin.updatesosmed');
+    Route::post('deletesosmed', [App\Http\Controllers\AdminSosmedController::class, 'deletesosmed'])->name('admin.deletesosmed');
 });
 
 

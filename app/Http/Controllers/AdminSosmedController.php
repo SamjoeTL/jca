@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProfilSosmed;
 use Illuminate\Http\Request;
 
-class SosmedController extends Controller
+class AdminSosmedController extends Controller
 {
 
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function index()
+    {
+        $sosmed = ProfilSosmed::get();
+        return view('admin.sosmed.footer', compact('sosmed'));
     }
 
     public function storesosmed(Request $request)

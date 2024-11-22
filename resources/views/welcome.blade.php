@@ -61,9 +61,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#product">Product</a>
                     </li>
-                    <li class="nav-item">
+                    <!--<li class="nav-item">
                         <a class="nav-link" href="#sosmed">Social Media</a>
-                    </li>
+                    </li>-->
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
@@ -167,48 +167,28 @@
             <div class="row align-items-center">
                 <div class="col-xxl-12 text-center">
                     <div class="title-wrapper">
-                        <h3 class="main-title mb-40 font-secondary">Our Service</h3>
+                        <h3 class="main-title mb-40 font-secondary">Our service</h3>
                     </div>
                 </div>
             </div>
 
             <div class="row text-center justify-content-center">
-                <!-- Service 1 -->
+                @foreach ($service as $s)
                 <div class="col-md-6 col-lg-4 mb-4">
-                    <!-- Service 1 -->
+                    <!-- Service Item -->
                     <!-- Profile Image -->
                     <div class="col-12 text-center">
                         <div class="profile-img-wrapper mb-4 position-relative mx-auto"
                             style="width: 200px; height: 200px;">
-                            <img src="images/service 1.png" alt="Emma Taylor" class="img-fluid rounded-circle shadow"
+                            <img src="{{asset($s->foto)}}" alt="{{$s->judul_en}}" class="img-fluid rounded-circle shadow"
                                 style="border: 5px solid #fff; object-fit: cover; width: 100%; height: 100%;">
                         </div>
                     </div>
-                    <h5 class="service-title mb-4" style="font-size: 30px">Expert Team Consultant</h5>
-                    <p class="service-description" style="font-size: 21px">Our team of knowledgeable professionals
-                        offers strategic advice and is committed to driving innovation and excellence. We collaborate
-                        with clients to design practical strategies that not only meet but also surpass their business
-                        goals.</p>
+                    <h5 class="service-title mb-4" style="font-size: 30px">{{$s->judul_en}}</h5>
+                    <p class="service-description" style="font-size: 21px"> {!!$s->desk_en!!}</p>
                 </div>
-
-                <!-- Service 2 -->
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <!-- Profile Image -->
-                    <div class="col-12 text-center">
-                        <div class="profile-img-wrapper mb-4 position-relative mx-auto"
-                            style="width: 200px; height: 200px;">
-                            <img src="images\Hospitality.jpeg" alt="Emma Taylor" class="img-fluid rounded-circle shadow"
-                                style="border: 5px solid #fff; object-fit: cover; width: 100%; height: 100%;">
-                        </div>
-                    </div>
-                    <h5 class="service-title mb-4" style="font-size: 30px">Hospitality Supplies</h5>
-                    <p class="service-description" style="font-size: 21px">The fundamental supplies needed to ensure
-                        top-notch service and cultivate a friendly environment for your guests, alongside addressing
-                        your business needs.</p>
-                </div>
+                @endforeach
             </div>
-        </div>
-        </div>
         </div>
     </section>
     <!-- End Services Section -->

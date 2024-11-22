@@ -6,6 +6,8 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\WebAbouts;
 use App\Models\WebHomes;
+use App\Models\ProfilSosmed;
+use App\Models\WebServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +19,9 @@ class DashboardController extends Controller
         $products = Product::all();
         $homes = WebHomes::all();
         $abouts = WebAbouts::all();// Ambil data dari model
-        return view('admin.dashboard', compact('products','homes', 'abouts')); // Kirim ke view
+        $sosmed = ProfilSosmed::all();
+        $service = WebServices::get();
+        return view('admin.dashboard', compact('products','homes', 'abouts','sosmed')); // Kirim ke view
 
     }
 
