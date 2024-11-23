@@ -1,28 +1,28 @@
 @extends('layouts.menu')
 
-@section('title-head', 'service')
+@section('title-head', 'Service')
 
 @push('page-css')
 <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/app-ecommerce.css') }}">
 @endpush
 
 @section('content')
-<div class="content-wrapper">
-    <div class="content-header row">
-      <div class="content-header-left col-md-9 col-12 mb-2">
-          <div class="row breadcrumbs-top">
-              <div class="col-12">
-                  <h2 class="content-header-title float-left mb-0">service
-                  </h2>
-                  <div class="breadcrumb-wrapper">
-                      <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a href="#">Website Content</a></li>
-                          <li class="breadcrumb-item active">service</li>
-                      </ol>
-                  </div>
-              </div>
-          </div>
-      </div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-left mb-0">Service
+                        </h2>
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather='home'></i></a></li>
+                                <li class="breadcrumb-item active">Service</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
       <div class="content-header-right text-md-right col-md-3 ">
         <a href="{{route('admin.service.create')}}" class="btn btn-danger"><i data-feather="plus"></i> Tambah service</a>
       </div>

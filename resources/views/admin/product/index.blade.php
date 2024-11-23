@@ -8,21 +8,22 @@
 @endpush
 
 @section('content')
-<div class="content-wrapper">
-    <div class="content-header row">
-      <div class="content-header-left col-md-9 col-12 mb-2">
-        <div class="row breadcrumbs-top">
-          <div class="col-12">
-            <h2 class="content-header-title float-left mb-0">Product</h2>
-            <div class="breadcrumb-wrapper">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Website Content</a></li>
-                <li class="breadcrumb-item active">Product</li>
-              </ol>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-left mb-0">Product
+                        </h2>
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather='home'></i></a></li>
+                                <li class="breadcrumb-item active">Product</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
       <div class="content-header-right text-md-right col-md-3 ">
         <a href="{{route('admin.product.create')}}" class="btn btn-danger"><i data-feather="plus"></i> Tambah Product</a>
       </div>
@@ -37,8 +38,8 @@
               <img class="img-fluid rounded" src="{{ asset($item->gambar) }}" alt="img-placeholder" />
             </div>
             <div class="card-body d-block">
-                <h2 class="mb-50">{{ $item->nama }}</h2>
-                {!!$item->desk!!}
+                <h2 class="mb-50">{{ $item->nama_en }}</h2>
+                {!!$item->desk_en!!}
             </div>
             <div class="item-options text-center">
                 <a href="{{asset($item->file)}}" class="lightbox-image btn btn-outline-info">
