@@ -6,7 +6,6 @@ use auth;
 use Illuminate\Support\Str;
 use App\Models\Webservices;
 use Illuminate\Http\Request;
-use App\Models\WebservicesGambar;
 use Illuminate\Support\Facades\Storage;
 
 class AdminServiceController extends Controller
@@ -115,13 +114,8 @@ class AdminServiceController extends Controller
     public function delete(Request $request)
     {
         try {
-            $foto_lama = WebservicesGambar::where('idservices', $request->id)->get();
-            foreach ($foto_lama as $key => $value) {
-              if (Storage::exists($value->file)) {
-                Storage::delete($value->file);
-              }
-            }
-            WebservicesGambar::where('idservices', $request->id)->delete();
+
+
             Webservices::where('id', $request->id)->delete();
             return back()->with('notif', json_encode([
                 'title' => "service",
