@@ -161,18 +161,13 @@
 <div class="content-wrapper">
     <div class="content-header row">
         <div class="content-header-left col-md-12 col-12 mb-2">
-            <div class="row breadcrumbs-top">
-                <div class="col-12">
-                    <h2 class="content-header-title float-left mb-0">About
-                    </h2>
-                    <div class="breadcrumb-wrapper">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i
-                                        data-feather='home'></i></a></li>
-                                        <li class="breadcrumb-item"><a href="{{route('admin.about')}}">About</a></li>
-                            <li class="breadcrumb-item active">Edit</li>
-                        </ol>
-                    </div>
+            <div class="breadcrumbs-top">
+                <h2 class="content-header-title float-left mb-0">About</h2>
+                <div class="breadcrumb-wrapper">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{route('admin.about')}}">About</a></li>
+                        <li class="breadcrumb-item active">Edit</li>
+                    </ol>
                 </div>
             </div>
         </div>
