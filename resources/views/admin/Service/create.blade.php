@@ -1,6 +1,6 @@
 @extends('layouts.menu')
 
-@section('title-head', 'service')
+@section('title-head', 'Service')
 
 @push('vendor-css')
 <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/editors/quill/katex.min.css') }}">
@@ -163,12 +163,12 @@
         <div class="content-header-left col-md-12 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2 class="content-header-title float-left mb-0">services
+                    <h2 class="content-header-title float-left mb-0">Services
                     </h2>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Website Content</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.service')}}">service</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.service')}}">Service</a></li>
                             <li class="breadcrumb-item active">Tambah</li>
                         </ol>
                     </div>
@@ -386,7 +386,7 @@
         img_cropping.cropper({
             viewMode: 2,
             dragMode: 'move',
-            aspectRatio: 3 / 2,
+            aspectRatio: 1 / 1,
             guides: true,
             cropBoxResizable: true,
             minContainerWidth: $('#modalCropper').find('.img_container').width(),

@@ -19,12 +19,8 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12">
         <div class="card">
-          <div class="card-header border-bottom py-1">
-            <div class="head-label">
-                <h4 class="card-title">Sosial Media</h4>
-              </div>
-          </div>
           <div class="card-body pt-1">
             <table class="table table-hover">
               <tbody>
@@ -177,6 +173,7 @@
             <hr class="m-0">
           </div>
         </div>
+    </div>
       </div>
     </div>
   </div>

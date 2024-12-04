@@ -1,6 +1,6 @@
 @extends('layouts.menu')
 
-@section('title-head', 'service')
+@section('title-head', 'Service')
 
 @push('vendor-css')
 <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/editors/quill/katex.min.css') }}">
@@ -163,13 +163,13 @@
         <div class="content-header-left col-md-12 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2 class="content-header-title float-left mb-0">service
+                    <h2 class="content-header-title float-left mb-0">Service
                     </h2>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i
                                         data-feather='home'></i></a></li>
-                            <li class="breadcrumb-item">service</li>
+                            <li class="breadcrumb-item">Service</li>
                             <li class="breadcrumb-item active">Edit</li>
                         </ol>
                     </div>
