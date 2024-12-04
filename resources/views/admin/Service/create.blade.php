@@ -167,7 +167,7 @@
                     </h2>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Website Content</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather='home'></i></a></li>
                             <li class="breadcrumb-item"><a href="{{route('admin.service')}}">Service</a></li>
                             <li class="breadcrumb-item active">Tambah</li>
                         </ol>

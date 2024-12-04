@@ -166,7 +166,7 @@
                     <h2 class="content-header-title float-left mb-0">Product</h2>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Website Content</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather='home'></i></a></li>
                             <li class="breadcrumb-item"><a href="{{route('admin.product')}}">Product</a></li>
                             <li class="breadcrumb-item active">Edit</li>
                         </ol>
@@ -458,14 +458,14 @@
         $('.n-desken').hide()
 
         var quilldesk = new Quill('.editor-desk', {
-            modules: { 
+            modules: {
                 toolbar: '#toolbar-container-desk',
             },
             theme: 'snow'
         });
 
         var quilldesken = new Quill('.editor-desk-en', {
-            modules: { 
+            modules: {
                 toolbar: '#toolbar-container-desk-en',
             },
             theme: 'snow'

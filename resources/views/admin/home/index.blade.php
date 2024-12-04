@@ -1,6 +1,6 @@
 @extends('layouts.menu')
 
-@section('title-head', 'homes')
+@section('title-head', 'Home')
 
 @push('page-css')
 <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/app-ecommerce.css') }}">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="card-body justify-content-center">
                     <h2 class="mb-1">{{ $item->judul }}</h2>
-                    @if($item->subjudul != null) 
+                    @if($item->subjudul != null)
                       <h5>{{$item->subjudul}}</h5>
                     @endif
                     {!!$item->desk!!}

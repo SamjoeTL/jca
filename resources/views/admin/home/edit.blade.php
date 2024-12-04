@@ -1,6 +1,6 @@
 @extends('layouts.menu')
 
-@section('title-head', 'home')
+@section('title-head', 'Home')
 
 @push('vendor-css')
 <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/editors/quill/katex.min.css') }}">

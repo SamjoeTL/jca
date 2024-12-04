@@ -163,11 +163,11 @@
         <div class="content-header-left col-md-12 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2 class="content-header-title float-left mb-0">Abouts
+                    <h2 class="content-header-title float-left mb-0">About
                     </h2>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Website Content</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather='home'></i></a></li>
                             <li class="breadcrumb-item"><a href="{{route('admin.about')}}">About</a></li>
                             <li class="breadcrumb-item active">Tambah</li>
                         </ol>
@@ -466,14 +466,14 @@
         $('.n-desken').hide()
 
         var quilldesk = new Quill('.editor-desk', {
-            modules: { 
+            modules: {
                 toolbar: '#toolbar-container-desk',
             },
             theme: 'snow'
         });
 
         var quilldesken = new Quill('.editor-desk-en', {
-            modules: { 
+            modules: {
                 toolbar: '#toolbar-container-desk-en',
             },
             theme: 'snow'
