@@ -11,7 +11,8 @@
     <title>JCA - Jembatan Cemerlang Abadi</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon-16x16.png">
+    <link rel="icon" href="{{ asset('images\logo\Logo.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('images\logo\Logo.ico') }}">
 
     <!-- Main CSS -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />

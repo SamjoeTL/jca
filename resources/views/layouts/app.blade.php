@@ -8,7 +8,8 @@
   <meta name="keywords" content="Jembatan Cemerlang Abadi Guest House, Guest House Canggu, Canggu, Bali">
   <meta name="author" content="Patras Dev">
   <title>JCA - @yield('title-head')</title>
-  <link rel="icon" href="{{asset('icon.ico')}}" type="image/x-icon"> <!-- Favicon-->
+  <link rel="icon" href="{{ asset('images\logo\Logo.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('images\logo\Logo.ico') }}"> <!-- Favicon-->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/vendors.min.css')}}">

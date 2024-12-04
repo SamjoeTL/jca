@@ -10,8 +10,8 @@
     <title>JCA - @yield('title-head')</title>
 
     <!-- Favicons-->
-    <link rel="icon" href="{{ asset('icon.ico') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('icon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('images\logo\Logo.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('images\logo\Logo.ico') }}">
     {{-- <link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('assets/img/apple-touch-icon-57x57-precomposed.png') }}">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('assets/img/apple-touch-icon-72x72-precomposed.pn') }}g">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{ asset('assets/img/apple-touch-icon-114x114-precomposed.png') }}">
@@ -148,7 +148,7 @@
     {{-- <script src="{{ asset('assets/js/datepicker_inline.js') }}"></script> --}}
     <script src="{{ asset('assets/phpmailer/validate.js') }}"></script>
 
-    @yield('js')
+    @yield('page-js')
 
 </body>
 
