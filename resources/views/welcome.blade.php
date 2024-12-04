@@ -480,7 +480,6 @@
     <!-- Start Footer -->
     <footer class="revealed">
         <div class="footer_bg">
-
             <div class="container">
                 <div class="row move_content justify-content-center">
                     <div class="col-lg-8 col-md-12">
@@ -488,21 +487,21 @@
                             <img src="images/logo/Logo.png" class="footer-img" alt="">
                             <ul class="contact">
                                 <li>
-                                    <i class="bi bi-envelope-paper"></i>
-                                    <a href="mailto:jembatancemerlang@gmail.com"
-                                        style="font-size: 15px">jembatancemerlang@gmail.com</a></li>
-                                <li>
-                                    <i class="bi bi-whatsapp"></i>
-                                    <a href="https://wa.me/+6281249473700" target="_blank" style="font-size: 15px">+62
-                                        81249473700</a>
-                                </li>
-                            </ul>
+                                    @foreach ($sosmed as $s)
+                                    <a href="{{$s->link}}"
+                                        style="font-size: 15px" target="blank">
+                                    @if($s->jenis == 1)
+                                    <i class="bi bi-envelope-paper"></i>{{$s->nama}}
+                                    @elseif($s->jenis == 2)
+                                    <i class="bi bi-whatsapp"></i>{{$s->nama}}
                             <div class="social" style="font-size: 15px">
-                                <h6>Follow Us :</h6>
-                                <ul>
-                                    <li><a href="#0" style="font-size: 15px"><i
-                                                class="bi bi-instagram"></i>@Jembatan_Cemerlang</a></li>
+                                <h6>Follow Us :</h6>@elseif($s->jenis == 3)
+                                    <i class="bi bi-instagram "></i>{{$s->nama}}@endif
+                                </a>
+                                @endforeach
+                            </li>
                                 </ul>
+
                             </div>
                         </div>
                     </div>
