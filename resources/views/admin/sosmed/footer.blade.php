@@ -225,7 +225,7 @@
 
 @endsection
 
-@section('page-js')
+@push('page-js')
 <script>
   $(document).ready(function() {
     $('.btntambahsosmed').on('click', function() {
@@ -290,4 +290,4 @@
     });
   });
 </script>
-@stop
+@endpush
