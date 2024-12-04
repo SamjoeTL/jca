@@ -19,6 +19,6 @@ class WelcomeController extends Controller
         $product = Product::where('status',1)->get();
         $sosmed = ProfilSosmed::get();
         $service = WebServices::get();
-        return view('welcome', compact('home','about', 'service', 'product'));
+        return view('welcome', compact('home','about', 'sosmed', 'service', 'product'));
     }
 }
