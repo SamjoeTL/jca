@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use auth;
 use Illuminate\Support\Str;
-use App\Models\Webhomes;
+use App\Models\WebHomes;
 use Illuminate\Http\Request;
 use App\Models\WebhomesGambar;
 use Illuminate\Support\Facades\Storage;
