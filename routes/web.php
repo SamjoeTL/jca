@@ -20,7 +20,6 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 Route::get('', [App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
 
 Auth::routes();
