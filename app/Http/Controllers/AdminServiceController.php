@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use auth;
 use Illuminate\Support\Str;
-use App\Models\Webservices;
+use App\Models\WebServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,7 +28,7 @@ class AdminServiceController extends Controller
 
     public function index()
     {
-        $data = Webservices::all();
+        $data = WebServices::all();
         return view('admin.service.index', compact('data'));
     }
 
@@ -46,7 +46,7 @@ class AdminServiceController extends Controller
                 $foto = $request->file('image')->store('service-img');
             }
 
-            $service = Webservices::create([
+            $service = WebServices::create([
                 "judul" => $request->judul,
                 "judul_en" => $request->judul_en,
                 "desk" => $request->desk,
@@ -57,14 +57,14 @@ class AdminServiceController extends Controller
             ]);
 
             return redirect('admin/service')->with('notif', json_encode([
-                'title' => "services",
-                'text' => "Berhasil menambah content services.",
+                'title' => "SERVICE",
+                'text' => "Berhasil menambah content service.",
                 'type' => "success"
             ]));
         } catch (\Exception $e) {
             return back()->with('notif', json_encode([
-                'title' => "services",
-                'text' => "Gagal menambah content services, ". $e->getMessage(),
+                'title' => "SERVICE",
+                'text' => "Gagal menambah content service, ". $e->getMessage(),
                 'type' => "error"
             ]));
         }
@@ -72,7 +72,7 @@ class AdminServiceController extends Controller
 
     public function edit($id)
     {
-        $data = Webservices::where('id',$id)->first();
+        $data = WebServices::where('id',$id)->first();
         return view('admin.service.edit', compact('data'));
     }
 
@@ -87,7 +87,7 @@ class AdminServiceController extends Controller
                 $foto = $request->file('image')->store('service-img');
             }
 
-           $service  = Webservices::where('id', $request->id)->update([
+           $service  = WebServices::where('id', $request->id)->update([
                 "judul" => $request->judul,
                 "judul_en" => $request->judul_en,
                 "desk" => $request->desk,
@@ -115,8 +115,7 @@ class AdminServiceController extends Controller
     {
         try {
 
-
-            Webservices::where('id', $request->id)->delete();
+            WebServices::where('id', $request->id)->delete();
             return back()->with('notif', json_encode([
                 'title' => "service",
                 'text' => "Berhasil menghapus service",

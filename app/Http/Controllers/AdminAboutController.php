@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use auth;
 use Illuminate\Support\Str;
-use App\Models\Webabouts;
+use App\Models\WebAbouts;
 use Illuminate\Http\Request;
 use App\Models\WebAboutsGambar;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +29,7 @@ class AdminAboutController extends Controller
 
     public function index()
     {
-        $data = Webabouts::all();
+        $data = WebAbouts::all();
         return view('admin.about.index', compact('data'));
     }
 
@@ -47,7 +47,7 @@ class AdminAboutController extends Controller
                 $foto = $request->file('image')->store('about-img');
             }
 
-            $about = Webabouts::create([
+            $about = WebAbouts::create([
                 "judul" => $request->judul,
                 "judul_en" => $request->judul_en,
                 "subjudul" => $request->subjudul,
@@ -61,14 +61,14 @@ class AdminAboutController extends Controller
             ]);
 
             return redirect('admin/about')->with('notif', json_encode([
-                'title' => "Abouts",
-                'text' => "Berhasil menambah content abouts.",
+                'title' => "ABOUT",
+                'text' => "Berhasil menambah content about.",
                 'type' => "success"
             ]));
         } catch (\Exception $e) {
             return back()->with('notif', json_encode([
-                'title' => "Abouts",
-                'text' => "Gagal menambah content abouts, ". $e->getMessage(),
+                'title' => "ABOUT",
+                'text' => "Gagal menambah content about, ". $e->getMessage(),
                 'type' => "error"
             ]));
         }
@@ -76,7 +76,7 @@ class AdminAboutController extends Controller
 
     public function edit($id)
     {
-        $data = Webabouts::where('id',$id)->first();
+        $data = WebAbouts::where('id',$id)->first();
         return view('admin.about.edit', compact('data'));
     }
 
@@ -91,7 +91,7 @@ class AdminAboutController extends Controller
                 $foto = $request->file('image')->store('about-img');
             }
 
-           $about  = Webabouts::where('id', $request->id)->update([
+           $about  = WebAbouts::where('id', $request->id)->update([
                 "judul" => $request->judul,
                 "judul_en" => $request->judul_en,
                 "subjudul" => $request->subjudul,
@@ -105,14 +105,14 @@ class AdminAboutController extends Controller
             ]);
 
             return redirect('admin/about')->with('notif', json_encode([
-              'title' => "about",
-              'text' => "Berhasil mengubah about.",
+              'title' => "ABOUT",
+              'text' => "Berhasil mengubah content about.",
               'type' => "success"
             ]));
         } catch (\Exception $e) {
           return back()->with('notif', json_encode([
-            'title' => "about",
-            'text' => "Gagal mengubah about, ". $e->getMessage(),
+            'title' => "ABOUT",
+            'text' => "Gagal mengubah content about, ". $e->getMessage(),
             'type' => "error"
           ]));
         }
@@ -128,16 +128,16 @@ class AdminAboutController extends Controller
               }
             }
             WebAboutsGambar::where('idabouts', $request->id)->delete();
-            Webabouts::where('id', $request->id)->delete();
+            WebAbouts::where('id', $request->id)->delete();
             return back()->with('notif', json_encode([
-                'title' => "about",
-                'text' => "Berhasil menghapus about",
+                'title' => "ABOUT",
+                'text' => "Berhasil menghapus content about",
                 'type' => "success"
             ]));
         } catch (\Exception $e) {
             return back()->with('notif', json_encode([
-                'title' => "about",
-                'text' => "Gagal menghapus about, " . $e->getMessage(),
+                'title' => "ABOUT",
+                'text' => "Gagal menghapus content about, " . $e->getMessage(),
                 'type' => "error"
             ]));
         }

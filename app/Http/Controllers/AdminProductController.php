@@ -51,13 +51,13 @@ class AdminProductController extends Controller
 
         return redirect('admin/product')->with('notif', json_encode([
             'title' => "PRODUCT",
-            'text' => "Berhasil menambahkan data product",
+            'text' => "Berhasil menambahkan content product",
             'type' => "success"
         ]));
       } catch (\Throwable $e) {
           return back()->with('notif', json_encode([
               'title' => "PRODUCT",
-              'text' => "Gagal menambahkan data product, ".$e->getMessage(),
+              'text' => "Gagal menambahkan content product, ".$e->getMessage(),
               'type' => "error"
           ]));
       }
@@ -100,13 +100,13 @@ class AdminProductController extends Controller
 
             return redirect('admin/product')->with('notif', json_encode([
                 'title' => "PRODUCT",
-                'text' => "Berhasil mengubah data product.",
+                'text' => "Berhasil mengubah content product.",
                 'type' => "success"
             ]));
         } catch (\Exception $e) {
             return back()->with('notif', json_encode([
                 'title' => "PRODUCT",
-                'text' => "Gagal mengubah data product, ". $e->getMessage(),
+                'text' => "Gagal mengubah content product, ". $e->getMessage(),
                 'type' => "error"
             ]));
         }
@@ -120,13 +120,13 @@ class AdminProductController extends Controller
             Product::where('id', $request->id)->delete();
             return back()->with('notif', json_encode([
                 'title' => "PRODUCT",
-                'text' => "Berhasil menghapus data product.",
+                'text' => "Berhasil menghapus content product.",
                 'type' => "success"
             ]));
         } catch (\Throwable $e) {
             return back()->with('notif', json_encode([
                 'title' => "PRODUCT",
-                'text' => "Gagal menghapus data product.".$e->getMessage(),
+                'text' => "Gagal menghapus content product.".$e->getMessage(),
                 'type' => "error"
             ]));
         }

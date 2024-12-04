@@ -29,7 +29,7 @@ class AdminHomeController extends Controller
 
     public function index()
     {
-        $data = Webhomes::all();
+        $data = WebHomes::all();
         return view('admin.home.index', compact('data'));
     }
 
@@ -47,7 +47,7 @@ class AdminHomeController extends Controller
                 $foto = $request->file('image')->store('home-img');
             }
 
-            $home = Webhomes::create([
+            $home = WebHomes::create([
                 "judul" => $request->judul,
                 "judul_en" => $request->judul_en,
                 "subjudul" => $request->subjudul,
@@ -60,14 +60,14 @@ class AdminHomeController extends Controller
             ]);
 
             return redirect('admin/home')->with('notif', json_encode([
-                'title' => "homes",
-                'text' => "Berhasil menambah content homes.",
+                'title' => "HOME",
+                'text' => "Berhasil menambah content home.",
                 'type' => "success"
             ]));
         } catch (\Exception $e) {
             return back()->with('notif', json_encode([
-                'title' => "homes",
-                'text' => "Gagal menambah content homes, ". $e->getMessage(),
+                'title' => "HOME",
+                'text' => "Gagal menambah content home, ". $e->getMessage(),
                 'type' => "error"
             ]));
         }
@@ -75,7 +75,7 @@ class AdminHomeController extends Controller
 
     public function edit($id)
     {
-        $data = Webhomes::where('id',$id)->first();
+        $data = WebHomes::where('id',$id)->first();
         return view('admin.home.edit', compact('data'));
     }
 
@@ -90,7 +90,7 @@ class AdminHomeController extends Controller
                 $foto = $request->file('image')->store('home-img');
             }
 
-           $home  = Webhomes::where('id', $request->id)->update([
+           $home  = WebHomes::where('id', $request->id)->update([
                 "judul" => $request->judul,
                 "judul_en" => $request->judul_en,
                 "subjudul" => $request->subjudul,
@@ -103,14 +103,14 @@ class AdminHomeController extends Controller
             ]);
 
             return redirect('admin/home')->with('notif', json_encode([
-              'title' => "home",
-              'text' => "Berhasil mengubah home.",
+              'title' => "HOME",
+              'text' => "Berhasil mengubah content home.",
               'type' => "success"
             ]));
         } catch (\Exception $e) {
           return back()->with('notif', json_encode([
-            'title' => "home",
-            'text' => "Gagal mengubah home, ". $e->getMessage(),
+            'title' => "HOME",
+            'text' => "Gagal mengubah content home, ". $e->getMessage(),
             'type' => "error"
           ]));
         }
@@ -119,22 +119,22 @@ class AdminHomeController extends Controller
     public function delete(Request $request)
     {
         try {
-            $foto_lama = WebhomesGambar::where('idhomes', $request->id)->get();
+            $foto_lama = WebHomesGambar::where('idhomes', $request->id)->get();
             foreach ($foto_lama as $key => $value) {
               if (Storage::exists($value->file)) {
                 Storage::delete($value->file);
               }
             }
-            WebhomesGambar::where('idhomes', $request->id)->delete();
-            Webhomes::where('id', $request->id)->delete();
+            WebHomesGambar::where('idhomes', $request->id)->delete();
+            WebHomes::where('id', $request->id)->delete();
             return back()->with('notif', json_encode([
-                'title' => "home",
+                'title' => "HOME",
                 'text' => "Berhasil menghapus home",
                 'type' => "success"
             ]));
         } catch (\Exception $e) {
             return back()->with('notif', json_encode([
-                'title' => "home",
+                'title' => "HOME",
                 'text' => "Gagal menghapus home, " . $e->getMessage(),
                 'type' => "error"
             ]));
