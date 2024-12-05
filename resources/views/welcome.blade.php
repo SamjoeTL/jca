@@ -28,8 +28,11 @@
     <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
+
+
 
 <body>
 
@@ -68,8 +71,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">{{$lang == 'id' ? 'Kontak':'Contact'}}</a>
                     </li>
+                    <div class="dropdown2">
+                        <button class="dropbtn2">Language
+                          <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown2-content">
+                          <a href="/">ENG</a>
+                          <a href="/id">IDN</a>
+                        </div>
                 </ul>
-
             </div>
             <!-- End collapse -->
         </div>
@@ -89,7 +99,7 @@
                     <div class="desc">
                         @if($lang == 'id')
                             {!!$home->desk!!}
-                        @else 
+                        @else
                             {!!$home->desk_en!!}
                         @endif
                     </div>
@@ -468,7 +478,7 @@
                         <div class="title-wrapper-touch mb-4">
                             <h2 class="main-title font-secondary">{{ $lang == 'id' ? 'Kontak Kami' : 'Contact Us' }}</h2>
                             <p class="pt-3 pb-4">
-                                @if($lang == 'id') 
+                                @if($lang == 'id')
                                     Tertarik untuk bekerja sama? Harap berikan beberapa detail, dan kami akan segera menghubungi Anda. Kami tunggu kabar dari Anda!
                                 @else
                                     Interested in collaborating? Please provide some details, and we’ll get back to you soon. We look forward to hearing from you!
