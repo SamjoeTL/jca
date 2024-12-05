@@ -24,11 +24,31 @@
                   <img class="img-fluid rounded" src="{{ asset($item->foto) }}" alt="img-placeholder" />
                 </div>
                 <div class="card-body justify-content-center">
-                    <h2 class="mb-1">{{ $item->judul }}</h2>
-                    @if($item->subjudul != null)
-                      <h5>{{$item->subjudul}}</h5>
-                    @endif
-                    {!!$item->desk!!}
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="english-tab" data-toggle="tab" href="#english" role="tab" aria-selected="true">English</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="indonesia-tab" data-toggle="tab" href="#indonesia" role="tab" aria-selected="false">Indonesia</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content mt-2">
+                    <div class="tab-pane active" id="english" role="tabpanel">
+                      <h2 class="mb-1">{{ $item->judul_en }}</h2>
+                      @if($item->subjudul_en != null)
+                        <h5>{{$item->subjudul_en}}</h5>
+                      @endif
+                      {!!$item->desk_en!!}
+                    </div>
+                    <div class="tab-pane" id="indonesia" role="tabpanel">
+                      <h2 class="mb-1">{{ $item->judul }}</h2>
+                      @if($item->subjudul != null)
+                        <h5>{{$item->subjudul}}</h5>
+                      @endif
+                      {!!$item->desk!!}
+                    </div>
+                  </div>
+                    
                 </div>
                 <div class="item-options text-center">
                     <a href="{{route('admin.home.edit',$item->id)}}" class="btn btn-outline-warning mt-1">

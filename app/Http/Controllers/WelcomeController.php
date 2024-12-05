@@ -12,13 +12,17 @@ use Illuminate\Http\Request;
 class WelcomeController extends Controller
 {
 
-    public function welcome()
+    public function welcome($lang = null)
     {
+        if ($lang === null) {
+            $lang = 'en';
+        }
+
         $home = WebHomes::with('gambar')->first();
         $about = WebAbouts::where('status',1)->get();
         $product = Product::where('status',1)->get();
         $sosmed = ProfilSosmed::get();
         $service = WebServices::get();
-        return view('welcome', compact('home','about', 'sosmed', 'service', 'product'));
+        return view('welcome', compact('home','about', 'sosmed', 'service', 'product','lang'));
     }
 }

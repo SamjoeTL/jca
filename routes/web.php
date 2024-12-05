@@ -19,7 +19,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('', [App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
+Route::get('/{lang?}', [App\Http\Controllers\WelcomeController::class, 'welcome'])->where('lang', 'id')->name('welcome');
 
 
 Auth::routes();

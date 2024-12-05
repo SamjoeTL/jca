@@ -30,8 +30,25 @@
               <img class="img-fluid rounded" src="{{ asset($item->gambar) }}" alt="img-placeholder" />
             </div>
             <div class="card-body d-block">
-                <h2 class="mb-50">{{ $item->nama_en }}</h2>
-                {!!$item->desk_en!!}
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="english{{$item->id}}-tab" data-toggle="tab" href="#english{{$item->id}}" role="tab" aria-selected="true">English</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="indonesia-tab{{$item->id}}" data-toggle="tab" href="#indonesia{{$item->id}}" role="tab" aria-selected="false">Indonesia</a>
+                </li>
+              </ul>
+              <div class="tab-content mt-1">
+                <div class="tab-pane active" id="english{{$item->id}}" role="tabpanel">
+                  <h2 class="mb-50">{{ $item->nama_en }}</h2>
+                  {!!$item->desk_en!!}
+                </div>
+                <div class="tab-pane" id="indonesia{{$item->id}}" role="tabpanel">
+                  <h2 class="mb-50">{{ $item->nama }}</h2>
+                  {!!$item->desk!!}
+                </div>
+              </div>
+
             </div>
             <div class="item-options text-center">
                 <a href="{{asset($item->file)}}" class="lightbox-image btn btn-outline-info">

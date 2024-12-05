@@ -51,22 +51,22 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navbar-navlist">
                     <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
+                        <a class="nav-link" href="#home">{{$lang == 'id' ? 'Beranda':'Home'}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
+                        <a class="nav-link" href="#about">{{$lang == 'id' ? 'Tentang':'About'}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
+                        <a class="nav-link" href="#services">{{$lang == 'id' ? 'Layanan':'Service'}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#product">Product</a>
+                        <a class="nav-link" href="#product">{{$lang == 'id' ? 'Produk':'Product'}}</a>
                     </li>
                     <!--<li class="nav-item">
                         <a class="nav-link" href="#sosmed">Social Media</a>
                     </li>-->
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="#contact">{{$lang == 'id' ? 'Kontak':'Contact'}}</a>
                     </li>
                 </ul>
 
@@ -79,18 +79,22 @@
 
     <!-- Start Hero Section -->
 
-    <section class="divider-150 d-table w-100 position-relative" style="background-color: #bfbfbf;" id="home">
+    <section class="home-section d-table w-100 position-relative" style="background-color: #bfbfbf;" id="home">
         <div class="container h-100 d-flex flex-column justify-content-center">
             <div class="row align-items-center justify-content-between">
                 <!-- Text Column -->
 
                 <div class="col-lg-6 col-md-6">
-                    <h1 class="display-4 display-md-3 fw-bold text-black mb-4 font-secondary">{{$home->judul_en}}</h1>
+                    <h1 class="display-4 display-md-3 fw-bold text-black mb-4 font-secondary">{{$lang == 'id' ? $home->judul : $home->judul_en}}</h1>
                     <div class="desc">
-                        {!!$home->desk_en!!}
+                        @if($lang == 'id')
+                            {!!$home->desk!!}
+                        @else 
+                            {!!$home->desk_en!!}
+                        @endif
                     </div>
                     <a href="#about" class="btn btn-dark rounded-pill mt-4">
-                        Learn More
+                        {{$lang == 'id' ? 'Selengkapnya':'Learn More'}}
                     </a>
                 </div>
                 <!-- End Text Column -->
@@ -125,25 +129,45 @@
                 <div class="col-lg-10">
                   <div class="text-center">
                     <div class="title">
-                        <h3 class="display-4 fw-bold text-dark font-secondary">{{$a->judul_en}}</h3>
-                        @if($a->subjudul_en != null)
-                        <h4 class="sub">{{$a->subjudul_en}}</h4>
+                        <h3 class="display-4 fw-bold text-dark font-secondary">{{$lang == 'id' ? $a->judul : $a->judul_en}}</h3>
+                        @if($lang == 'id')
+                            @if($a->subjudul != null)
+                            <h4 class="sub">{{$a->subjudul}}</h4>
+                            @endif
+                        @else
+                            @if($a->subjudul_en != null)
+                            <h4 class="sub">{{$a->subjudul_en}}</h4>
+                            @endif
                         @endif
                     </div>
-                    {!!$a->desk_en!!}
+                    @if($lang == 'id')
+                        {!!$a->desk!!}
+                    @else
+                        {!!$a->desk_en!!}
+                    @endif
                 </div>
                 </div>
                 @else
                 <div class="col-lg-6 col-md-12 mb-4 mb-lg-0 {{$a->position == 3 ? 'order-2':'order-1'}}">
                     <div class="about-overview position-{{$a->position}}">
                         <div class="title">
-                            <h3 class="display-4 fw-bold text-dark font-secondary">{{$a->judul_en}}</h3>
-                            @if($a->subjudul_en != null)
-                            <h4 class="sub">{{$a->subjudul_en}}</h4>
+                            <h3 class="display-4 fw-bold text-dark font-secondary">{{$lang == 'id' ? $a->judul : $a->judul_en}}</h3>
+                            @if($lang == 'id')
+                                @if($a->subjudul != null)
+                                <h4 class="sub">{{$a->subjudul}}</h4>
+                                @endif
+                            @else
+                                @if($a->subjudul_en != null)
+                                <h4 class="sub">{{$a->subjudul_en}}</h4>
+                                @endif
                             @endif
                         </div>
                         <div class="desc">
-                            {!!$a->desk_en!!}
+                            @if($lang == 'id')
+                                {!!$a->desk!!}
+                            @else
+                                {!!$a->desk_en!!}
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -163,19 +187,19 @@
 
 
     <!-- Start Services Section -->
-    <section class="divider-100 services-section" id="services" style="background-color: #bfbfbf;">
+    <section class="services-section" id="services" style="background-color: #bfbfbf;">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xxl-12 text-center">
                     <div class="title-wrapper">
-                        <h3 class="main-title mb-40 font-secondary">Our service</h3>
+                        <h3 class="main-title mb-40 font-secondary">{{$lang == 'id' ? 'Layanan Kami' : 'Our services'}}</h3>
                     </div>
                 </div>
             </div>
 
             <div class="row text-center justify-content-center">
                 @foreach ($service as $s)
-                <div class="col-md-6 col-lg-4 mb-4">
+                <div class="col-md-6 col-lg-4">
                     <!-- Service Item -->
                     <!-- Profile Image -->
                     <div class="col-12 text-center">
@@ -185,8 +209,14 @@
                                 style="border: 5px solid #fff; object-fit: cover; width: 100%; height: 100%;">
                         </div>
                     </div>
-                    <h5 class="service-title mb-4" style="font-size: 30px">{{$s->judul_en}}</h5>
-                    <p class="service-description" style="font-size: 21px"> {!!$s->desk_en!!}</p>
+                    <h5 class="service-title mb-3" style="font-size: 30px">{{$lang == 'id' ? $s->judul : $s->judul_en}}</h5>
+                    <div class="service-description">
+                        @if($lang == 'id')
+                            {!!$s->desk!!}
+                        @else
+                            {!!$s->desk_en!!}
+                        @endif
+                    </div>
                 </div>
                 @endforeach
             </div>
@@ -201,7 +231,7 @@
             <div class="row">
                 <div class="col-md text-center">
                     <h2 class="wow fadeInUp text-capitalize font-secondary mb-40" data-wow-delay="300">
-                        Feature <span class="gradient">Product</span>
+                        {{$lang == 'id' ? 'Produk Unggulan' : 'Feature Product'}}
                     </h2>
                 </div>
             </div>
@@ -215,12 +245,16 @@
                 <div class="col-lg-6 wow fadeInUp">
                     <div class="blog-content">
                         <div class="title">
-                            <h3 class="font-secondary" data-wow-delay="300">{{ $item->nama_en }}</h3>
+                            <h3 class="font-secondary" data-wow-delay="300">{{ $lang == 'id' ? $item->nama : $item->nama_en }}</h3>
                         </div>
                         <div class="desc">
-                            {!! $item->desk_en !!}
+                            @if($lang == 'id')
+                                {!! $item->desk !!}
+                            @else
+                                {!! $item->desk_en !!}
+                            @endif
                         </div>
-                        <button type="button" class="btn btn-dark rounded-pill mt-3" id="img-flip-{{ $item->id }}">See Catalog</button>
+                        <button type="button" class="btn btn-dark rounded-pill mt-3" id="img-flip-{{ $item->id }}">{{$lang == 'id' ? 'Lihat Katalog' : 'See Catalog'}}</button>
                     </div>
                 </div>
             </div>
@@ -387,15 +421,15 @@
     <!-- Facebook Post Slider End -->
 
     <!-- Start Contact Section -->
-    <section class=" divider-100 contact-section-touch" id="contact" style="background-color: #f1eded;">
+    <section class="contact-section-touch" id="contact" style="background-color: #f1eded;">
         <div class="container">
-            <div class="row align-items-center">
+            {{-- <div class="row align-items-center">
                 <div class="col-xxl-12 text-center">
                     <div class="title-wrapper">
                         <h2 class="main-title mb-40 font-secondary">Contact</h2>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="row">
                 <!-- Contact Info - Top on Small Screens, Right on Large Screens -->
@@ -404,24 +438,24 @@
                         <form id="contact-form-touch">
                             <div class="row">
                                 <div class="col-md-6 mb-4">
-                                    <input type="text" class="form-control-touch" placeholder="Your Name" name="name"
+                                    <input type="text" class="form-control-touch" placeholder="{{$lang == 'id' ? 'Nama Anda' : 'Your Name'}}" name="name"
                                         id="form_name">
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <input type="email" class="form-control-touch" placeholder="Your Email" name="email"
+                                    <input type="email" class="form-control-touch" placeholder="{{$lang == 'id' ? 'Email Anda' : 'Your Email'}}" name="email"
                                         id="form_email">
                                 </div>
                                 <div class="col-12 mb-4">
-                                    <input type="text" class="form-control-touch" placeholder="Subject" name="subject"
+                                    <input type="text" class="form-control-touch" placeholder="{{$lang == 'id' ? 'Subjek' : 'Subject'}}" name="subject"
                                         id="form_subject">
                                 </div>
                                 <div class="col-12 mb-4">
-                                    <textarea class="form-control-touch" placeholder="Your Message" rows="5"
+                                    <textarea class="form-control-touch" placeholder="{{$lang == 'id' ? 'Pesan Anda' : 'Your Message'}}" rows="5"
                                         name="message" id="form_message"></textarea>
                                 </div>
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-dark rounded-pill px-4 py-3 me-3 border-3"
-                                        style="border-color:#fff;">Send Message</button>
+                                        style="border-color:#fff;">{{$lang == 'id' ? 'Kirim Pesan' : 'Send Message'}}</button>
                                 </div>
                             </div>
                         </form>
@@ -432,10 +466,13 @@
                 <div class="col-lg-5 order-2 order-lg-1">
                     <div class="contact-info-touch" style="background-color: #f1eded;">
                         <div class="title-wrapper-touch mb-4">
-                            <h3 class="main-title font-secondary">Contact Us</h3>
+                            <h2 class="main-title font-secondary">{{ $lang == 'id' ? 'Kontak Kami' : 'Contact Us' }}</h2>
                             <p class="pt-3 pb-4">
-                                Interested in collaborating? Please provide some details, and we’ll get back to you
-                                soon. We look forward to hearing from you!
+                                @if($lang == 'id') 
+                                    Tertarik untuk bekerja sama? Harap berikan beberapa detail, dan kami akan segera menghubungi Anda. Kami tunggu kabar dari Anda!
+                                @else
+                                    Interested in collaborating? Please provide some details, and we’ll get back to you soon. We look forward to hearing from you!
+                                @endif
                             </p>
                         </div>
                         <div class="contact-details-touch">
@@ -448,7 +485,7 @@
                                     </svg>
                                 </div>
                                 <div class="details ms-3">
-                                    <h4>Phone</h4>
+                                    <h4>{{$lang == 'id' ? 'Telepon' : 'Phone'}}</h4>
                                     <p>+(00) 000 000 123</p>
                                 </div>
                             </div>

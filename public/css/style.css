@@ -1123,8 +1123,9 @@ a.text-gradient-primary:focus {
   font-weight: 700;
 }
 
-.service-description {
-  color: #666;
+.service-description p {
+  font-size: 20px;
+  margin-bottom: 0;
 }
 .learn-more-link {
   display: inline-block;
@@ -1315,7 +1316,7 @@ a.text-gradient-primary:focus {
 }
 /* 11.  Contact */
 .contact-section-touch {
-  padding: 100px 0;
+  padding: 80px 0;
 }
 
 .title-wrapper-touch h2.subtitle-touch {
@@ -1370,7 +1371,7 @@ a.text-gradient-primary:focus {
 }
 
 .contact-form-touch {
-  padding: 40px;
+  padding: 0 40px;
   border-radius: 8px;
 }
 
@@ -1650,16 +1651,21 @@ footer .copy {
   }
 }
 
+.home-section {
+  padding: 150px 0 80px;
+}
+
 .about-section {
-  padding: 60px 0;
+  padding: 80px 0;
   background-color: #f1eded;
 }
 
-
-
-
 .product-section {
-  padding: 60px 0;
+  padding: 80px 0;
+}
+
+.services-section {
+  padding: 80px 0;
 }
 
 .about-section:nth-child(even) {

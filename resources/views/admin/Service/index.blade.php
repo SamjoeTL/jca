@@ -28,9 +28,24 @@
                         <img class="img-fluid rounded" src="{{ asset($item->foto) }}" alt="img-placeholder" />
                     </div>
                     <div class="card-body justify-content-center">
-                        <h2 class="mb-1">{{ $item->judul_en }}</h2>
-
-                        <p class="card-text text-justify">{!!$item->desk_en!!}</p>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="english{{$item->id}}-tab" data-toggle="tab" href="#english{{$item->id}}" role="tab" aria-selected="true">English</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="indonesia-tab{{$item->id}}" data-toggle="tab" href="#indonesia{{$item->id}}" role="tab" aria-selected="false">Indonesia</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content mt-1">
+                            <div class="tab-pane active" id="english{{$item->id}}" role="tabpanel">
+                                <h2 class="mb-1">{{ $item->judul_en }}</h2>
+                                <p class="card-text text-justify">{!!$item->desk_en!!}</p>
+                            </div>
+                            <div class="tab-pane" id="indonesia{{$item->id}}" role="tabpanel">
+                                <h2 class="mb-1">{{ $item->judul }}</h2>
+                                <p class="card-text text-justify">{!!$item->desk!!}</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="item-options text-center">
                         <a href="{{route('admin.service.edit',$item->id)}}" class="btn btn-outline-warning mt-1">
