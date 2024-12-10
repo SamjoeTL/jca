@@ -584,18 +584,26 @@ a.text-gradient-primary:focus {
 .dropdown2 {
     float: left;
     overflow: hidden;
+    padding: 15px 0;
+    margin-left: 15px;
   }
 
   .dropdown2 .dropbtn2 {
-    font-size: 20px;
-    font-weight: 100px;
-    border: none;
-    outline: none;
-    color: #000;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: var(--font-primary);
     margin: 0;
+    height: 25px;
+    width: 25px;
+    border: 1px solid #bfbfbf;
+    outline: none;
+    background-image: url(../images/en.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    
+  }
+
+  .dropdown2 .dropbtn2.indo {
+    background-image: url(../images/id.svg);
   }
 
   .navbar a:hover, .dropdown2:hover .dropbtn2 {
@@ -606,7 +614,7 @@ a.text-gradient-primary:focus {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 130px;
+    min-width: 100px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
   }
@@ -614,10 +622,17 @@ a.text-gradient-primary:focus {
   .dropdown2-content a {
     float: none;
     color: black;
-    padding: 12px 16px;
+    padding: 10px 12px;
     text-decoration: none;
-    display: block;
+    display: flex;
     text-align: left;
+    font-size: 16px;
+  }
+
+  .dropdown2-content a img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
   }
 
   .dropdown2-content a:hover {
@@ -1447,7 +1462,7 @@ footer {
 
 footer .footer_bg {
     position: relative;
-    padding-top: 30px;
+    padding-top: 50px;
     opacity: 0.8;
     z-index: 2;
     overflow: hidden
@@ -1560,8 +1575,8 @@ footer .copy {
     justify-content: center;
 }
 
-.footer ul.contact li {
-    margin: 0 10px;
+.footer ul.contact li:nth-child(even) {
+    margin:  0 15px;
 }
 
 @media screen and (max-width: 768px) {

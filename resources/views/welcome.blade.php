@@ -72,13 +72,19 @@
                         <a class="nav-link" href="#contact">{{$lang == 'id' ? 'Kontak':'Contact'}}</a>
                     </li>
                     <div class="dropdown2">
-                        <button class="dropbtn2">Language
-                          <i class="fa fa-caret-down"></i>
+                        <button class="dropbtn2 {{$lang == 'id' ? 'indo':''}}">
                         </button>
                         <div class="dropdown2-content">
-                          <a href="/">ENG</a>
-                          <a href="/id">IDN</a>
+                          <a href="/">
+                            <img src="{{asset('images/en.svg')}}" alt="">
+                            English
+                          </a>
+                          <a href="/id">
+                            <img src="{{asset('images/id.svg')}}" alt="">
+                            Indonesia
+                          </a>
                         </div>
+                    </div>
                 </ul>
             </div>
             <!-- End collapse -->
@@ -532,22 +538,25 @@
                     <div class="col-lg-8 col-md-12">
                         <div class="footer text-center">
                             <img src="images/logo/Logo.png" class="footer-img" alt="">
+                            @if(count($sosmed) > 0) 
+                            <h6>Follow Us :</h6>
                             <ul class="contact">
+                                @foreach ($sosmed as $s)
                                 <li>
-                                    @foreach ($sosmed as $s)
-                                    <a href="{{$s->link}}"
-                                        style="font-size: 15px" target="blank">
-                                    @if($s->jenis == 1)
-                                    <i class="bi bi-envelope-paper"></i>{{$s->nama}}
-                                    @elseif($s->jenis == 2)
-                                    <i class="bi bi-whatsapp"></i>{{$s->nama}}
-                            <div class="social" style="font-size: 15px">
-                                <h6>Follow Us :</h6>@elseif($s->jenis == 3)
-                                    <i class="bi bi-instagram "></i>{{$s->nama}}@endif
-                                </a>
+                                    <a href="{{$s->link}}" style="font-size: 15px" target="blank">
+                                        @if($s->jenis == 1)
+                                            <i class="bi bi-facebook"></i>
+                                        @elseif($s->jenis == 2)
+                                            <i class="bi bi-whatsapp"></i>
+                                        @elseif($s->jenis == 3)
+                                            <i class="bi bi-instagram "></i>
+                                        @endif
+                                        {{$s->nama}}
+                                    </a>
+                                </li>
                                 @endforeach
-                            </li>
-                                </ul>
+                            </ul>
+                            @endif
 
                             </div>
                         </div>
